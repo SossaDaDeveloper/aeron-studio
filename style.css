@@ -1,7 +1,10 @@
+/* CUSTOM VANILLA CSS - AERON STUDIO */
+
 :root {
     --bg-color: #F7F5F2;
     --text-color: #1A1A1A;
     --accent-color: #D9FB52;
+    --white: #FFFFFF;
     --grey-light: #E0E0E0;
     --grey-medium: #888888;
     
@@ -24,6 +27,7 @@
     padding: 0;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -46,7 +50,7 @@ body.loading {
     width: 300%;
     height: 300%;
     background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-    opacity: 0.15;
+    opacity: 0.12;
     pointer-events: none;
     z-index: 10000;
     animation: grain 8s steps(10) infinite;
@@ -161,7 +165,7 @@ img {
 
 .badge {
     background-color: var(--text-color);
-    color: #fff;
+    color: var(--white);
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -189,7 +193,7 @@ img {
 }
 
 .hero-title {
-    font-size: clamp(4rem, 15vw, 18rem);
+    font-size: clamp(4rem, 15vw, 15rem);
     font-weight: 900;
     line-height: 0.8;
     letter-spacing: -0.05em;
@@ -204,7 +208,7 @@ img {
 
 .hero-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1.2fr 1fr;
     gap: var(--space-m);
     margin-bottom: var(--space-m);
 }
@@ -245,6 +249,7 @@ img {
     gap: var(--space-s);
     font-weight: 900;
     font-size: 0.875rem;
+    transition: var(--transition-smooth);
 }
 
 .circle-arrow {
@@ -266,7 +271,7 @@ img {
 /* Ticker */
 .ticker-section {
     background-color: var(--accent-color);
-    padding: var(--space-s) 0;
+    padding: var(--space-xs) 0;
     border-top: 1px solid var(--text-color);
     border-bottom: 1px solid var(--text-color);
     overflow: hidden;
@@ -274,16 +279,22 @@ img {
 
 .ticker-track {
     display: flex;
+    overflow: hidden;
     white-space: nowrap;
+}
+
+.ticker-content {
+    display: flex;
+    animation: ticker 40s linear infinite;
     width: max-content;
-    animation: ticker 30s linear infinite;
 }
 
 .ticker-item {
-    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-size: clamp(1.2rem, 3vw, 2.5rem);
     font-weight: 900;
-    padding-right: 2rem;
+    padding-right: 3rem;
     text-transform: uppercase;
+    display: inline-block;
 }
 
 @keyframes ticker {
@@ -297,7 +308,7 @@ img {
 }
 
 .philosophy-content {
-    max-width: 900px;
+    max-width: 1000px;
     margin-left: auto;
 }
 
@@ -317,11 +328,11 @@ img {
 /* Collection */
 .collection {
     padding: var(--space-xl) 0;
-    background-color: #fff;
+    background-color: var(--white);
 }
 
 .collection-header {
-    margin-bottom: var(--space-m);
+    margin-bottom: var(--space-l);
 }
 
 .section-title {
@@ -341,7 +352,6 @@ img {
 .product-card {
     background-color: var(--bg-color);
     padding: var(--space-s);
-    text-align: center;
     display: flex;
     flex-direction: column;
 }
@@ -365,11 +375,17 @@ img {
     transform: scale(1.1);
 }
 
+.product-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .product-meta {
     display: flex;
-    justify-content: center;
     gap: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .badge-v2 {
@@ -384,13 +400,14 @@ img {
     font-family: var(--font-mono);
     font-size: 0.6rem;
     color: var(--grey-medium);
+    margin-top: 2px;
 }
 
 .product-name {
     font-weight: 900;
-    font-size: clamp(1.25rem, 2.5vw, 2.5rem);
+    font-size: clamp(1.1rem, 2vw, 2rem);
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     letter-spacing: -0.02em;
 }
 
@@ -409,7 +426,7 @@ img {
 
 .current-price {
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 .collection-footer {
@@ -437,21 +454,22 @@ img {
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
+    position: relative;
 }
 
 .signature {
     font-family: var(--font-mono);
-    font-size: clamp(4rem, 12vw, 12rem);
-    opacity: 0.1;
+    font-size: clamp(3rem, 10vw, 10rem);
+    opacity: 0.08;
     line-height: 1;
     margin-bottom: -1rem;
 }
 
 .quote-text {
-    font-size: clamp(1.25rem, 3vw, 3rem);
+    font-size: clamp(1.2rem, 2.5vw, 2.8rem);
     font-weight: 400;
-    line-height: 1.2;
-    max-width: 800px;
+    line-height: 1.25;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -463,14 +481,14 @@ img {
 .newsletter-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-l);
+    gap: var(--space-xl);
     align-items: center;
 }
 
 .newsletter-title {
-    font-size: clamp(3rem, 6vw, 6rem);
+    font-size: clamp(2.5rem, 6vw, 6rem);
     font-weight: 900;
-    line-height: 0.9;
+    line-height: 0.95;
     letter-spacing: -0.04em;
     text-transform: uppercase;
     margin-top: var(--space-s);
@@ -478,16 +496,17 @@ img {
 
 .mail-icon {
     margin-top: var(--space-m);
+    color: var(--grey-medium);
 }
 
 .newsletter-form-box {
-    padding-top: var(--space-m);
+    width: 100%;
 }
 
 .form-instruction {
-    font-size: 1.125rem;
+    font-size: 1.1rem;
     margin-bottom: var(--space-m);
-    max-width: 400px;
+    max-width: 450px;
 }
 
 .newsletter-form {
@@ -500,20 +519,21 @@ img {
     background: transparent;
     border: none;
     border-bottom: 2px solid var(--text-color);
-    padding: 1rem 0;
+    padding: 1.25rem 0;
     font-family: var(--font-mono);
     font-size: 1rem;
     outline: none;
+    width: 100%;
 }
 
 .submit-btn {
     align-self: flex-start;
     background-color: var(--text-color);
-    color: var(--bg-color);
+    color: var(--white);
     border: none;
-    padding: 1rem 3rem;
+    padding: 1.25rem 3.5rem;
     font-weight: 900;
-    font-size: 0.875rem;
+    font-size: 0.9rem;
     cursor: pointer;
     transition: var(--transition-smooth);
 }
@@ -525,7 +545,7 @@ img {
 
 /* Footer */
 .footer {
-    padding: var(--space-l) 0 var(--space-m);
+    padding: var(--space-xl) 0 var(--space-m);
     border-top: 1px solid var(--grey-light);
 }
 
@@ -538,7 +558,7 @@ img {
 
 .footer-label {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     color: var(--grey-medium);
     display: block;
     margin-bottom: 1.5rem;
@@ -548,19 +568,26 @@ img {
     margin-bottom: 0.75rem;
 }
 
-.footer-links a {
+.footer-link {
     font-weight: 500;
-    font-size: 0.875rem;
+    font-size: 0.9rem;
+    transition: var(--transition-fast);
+}
+
+.footer-link:hover {
+    padding-left: 5px;
+    color: var(--grey-medium);
 }
 
 .footer-action {
     display: flex;
     justify-content: flex-end;
+    align-items: flex-start;
 }
 
 .scroll-top-btn {
-    width: 60px;
-    height: 60px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     border: 1px solid var(--text-color);
     background: transparent;
@@ -573,7 +600,7 @@ img {
 
 .scroll-top-btn:hover {
     background-color: var(--text-color);
-    color: var(--bg-color);
+    color: var(--white);
 }
 
 .footer-bottom {
@@ -583,31 +610,35 @@ img {
     padding-top: var(--space-m);
     border-top: 1px solid var(--grey-light);
     font-family: var(--font-mono);
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     color: var(--grey-medium);
 }
 
 .footer-social {
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
-/* Animations */
+.footer-social-link:hover {
+    color: var(--text-color);
+}
+
+/* Animation States */
 .reveal-text {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1s, transform 1s;
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-fade {
     opacity: 0;
-    transition: opacity 1.5s;
+    transition: opacity 1.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-up {
     opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s, transform 0.8s;
+    transform: translateY(60px);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .active.reveal-text {
@@ -624,10 +655,14 @@ img {
     transform: translateY(0);
 }
 
-/* Responsive */
+/* Responsive Overrides */
 @media (max-width: 1024px) {
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hero-grid {
+        grid-template-columns: 1fr;
     }
     
     .newsletter-grid {
@@ -638,10 +673,6 @@ img {
 @media (max-width: 768px) {
     .nav {
         display: none;
-    }
-    
-    .hero-grid {
-        grid-template-columns: 1fr;
     }
     
     .footer-grid {
@@ -656,7 +687,11 @@ img {
     
     .footer-bottom {
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 2rem;
         text-align: center;
+    }
+    
+    .hero-title {
+        font-size: clamp(3rem, 12vw, 8rem);
     }
 }

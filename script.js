@@ -1,66 +1,91 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initial Load Animation
-    setTimeout(() => {
-        document.body.classList.remove('loading');
-        triggerInitialReveal();
-    }, 500);
+/**
+ * AERON STUDIO | PROJECT AW/26
+ * Pure Vanilla JavaScript Implementation
+ */
 
-    // 2. Header Scroll Effect
+document.addEventListener('DOMContentLoaded', () => {
+    // ---------------------------------------------------------
+    // 1. Initial Load / State Management
+    // ---------------------------------------------------------
+    const initApp = () => {
+        setTimeout(() => {
+            document.body.classList.remove('loading');
+            triggerInitialAnims();
+        }, 600);
+    };
+
+    // ---------------------------------------------------------
+    // 2. Navigation & Sticky Header
+    // ---------------------------------------------------------
     const header = document.getElementById('header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+    const handleScroll = () => {
+        if (window.scrollY > 40) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
-    });
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
+    // ---------------------------------------------------------
     // 3. Reveal Animations (Intersection Observer)
-    const revealElements = document.querySelectorAll('.reveal-text, .reveal-fade, .reveal-up');
-    
+    // ---------------------------------------------------------
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -60px 0px"
+    };
+
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
+                revealObserver.unobserve(entry.target); // Standard practice for reveal
             }
         });
-    }, {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
-    });
+    }, observerOptions);
 
+    const revealElements = document.querySelectorAll('.reveal-text, .reveal-fade, .reveal-up');
     revealElements.forEach(el => revealObserver.observe(el));
 
-    function triggerInitialReveal() {
+    const triggerInitialAnims = () => {
+        // Double check elements in viewport on load
         revealElements.forEach(el => {
             const rect = el.getBoundingClientRect();
             if (rect.top < window.innerHeight) {
                 el.classList.add('active');
             }
         });
-    }
+    };
 
-    // 4. Parallax Effect
+    // ---------------------------------------------------------
+    // 4. Parallax Image Motion
+    // ---------------------------------------------------------
     const parallaxItems = document.querySelectorAll('.parallax');
-    window.addEventListener('scroll', () => {
+    const handleParallax = () => {
         const scrolled = window.scrollY;
         parallaxItems.forEach(item => {
-            const speed = item.getAttribute('data-speed') || 0.05;
+            const speed = parseFloat(item.getAttribute('data-speed')) || 0.05;
             const yPos = -(scrolled * speed);
             item.style.transform = `translateY(${yPos}px)`;
         });
-    });
+    };
+    window.addEventListener('scroll', handleParallax, { passive: true });
 
-    // 5. Smooth Scroll for Anchor Links
+    // ---------------------------------------------------------
+    // 5. Smooth Internal Scrolling
+    // ---------------------------------------------------------
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
-            
+
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 e.preventDefault();
-                const offsetPosition = targetElement.offsetTop - 80;
+                const headerOffset = 80;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
                 window.scrollTo({
                     top: offsetPosition,
                     behavior: 'smooth'
@@ -69,7 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // ---------------------------------------------------------
     // 6. Scroll to Top
+    // ---------------------------------------------------------
     const scrollTopBtn = document.getElementById('scrollTop');
     if (scrollTopBtn) {
         scrollTopBtn.addEventListener('click', () => {
@@ -80,43 +107,54 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. Magnetic Button Effect (Refined)
+    // ---------------------------------------------------------
+    // 7. Refined Magnetic/Hover Effects
+    // ---------------------------------------------------------
     const hoverTriggers = document.querySelectorAll('.hover-trigger');
-    hoverTriggers.forEach(trigger => {
-        trigger.addEventListener('mousemove', (e) => {
-            const rect = trigger.getBoundingClientRect();
+    hoverTriggers.forEach(target => {
+        target.addEventListener('mousemove', (e) => {
+            const rect = target.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
             
-            const strength = 15;
-            const moveX = x / strength;
-            const moveY = y / strength;
+            const sensitivity = 0.4;
+            const moveX = x * sensitivity;
+            const moveY = y * sensitivity;
             
-            trigger.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            target.style.transform = `translate(${moveX}px, ${moveY}px)`;
         });
         
-        trigger.addEventListener('mouseleave', () => {
-            trigger.style.transform = `translate(0px, 0px)`;
+        target.addEventListener('mouseleave', () => {
+            target.style.transform = 'translate(0px, 0px)';
         });
     });
 
-    // 8. Newsletter Form Mock
+    // ---------------------------------------------------------
+    // 8. Newsletter Simulation
+    // ---------------------------------------------------------
     const newsForm = document.querySelector('.newsletter-form');
     if (newsForm) {
         newsForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const btn = newsForm.querySelector('.submit-btn span');
-            const originalText = btn.textContent;
+            const submitBtnText = newsForm.querySelector('.submit-btn span');
+            const input = newsForm.querySelector('.newsletter-input');
+            const originalText = submitBtnText.textContent;
             
-            btn.textContent = 'CONNECTING...';
-            
+            submitBtnText.textContent = 'CONNECTING...';
+            input.disabled = true;
+
             setTimeout(() => {
-                btn.textContent = 'SYSTEM UPDATED';
+                submitBtnText.textContent = 'SYSTEM REGISTERED';
                 newsForm.reset();
+                input.disabled = false;
+                
                 setTimeout(() => {
-                    btn.textContent = originalText;
-                }, 3000);
-            }, 1200);
+                    submitBtnText.textContent = originalText;
+                }, 4000);
+            }, 1500);
         });
     }
+
+    // Start
+    initApp();
 });

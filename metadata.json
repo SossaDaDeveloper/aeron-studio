@@ -1,0 +1,8 @@
+{
+  "name": "AERON Studio",
+  "description": "Premium technical fashion landing page with a minimalist editorial aesthetic.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
