@@ -1,20 +1,64 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# AERON Studio — Premium Fashion Landing Page
 
-# Run and deploy your AI Studio app
+This is a fully responsive luxury streetwear landing page built with React, Vite, CSS, and JavaScript.
 
-This contains everything you need to run your app locally.
+Inspired by modern fashion websites, this project focuses on bold typography, clean layouts, smooth animations, and product presentation while maintaining a modern frontend architecture.
 
-View your app in AI Studio: https://ai.studio/apps/28ec8a59-2ddc-44f1-8a22-f576f985a416
+## Preview
 
-## Run Locally
+A modern fashion-inspired experience featuring:
 
-**Prerequisites:**  Node.js
+- Large editorial typography
+- Premium minimalist layout
+- Smooth scrolling interactions
+- Animated product showcases
+- Responsive mobile-first design
+- Interactive hover effects
+
+---
+
+## Tech Stack
+
+- React
+- Vite
+- JavaScript
+- CSS3
+
+---
+
+## Features
+
+### Responsive Design
+Optimized for:
+- Desktop
+- Tablet
+- Mobile devices
 
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## This project was inspired by:
+
+Luxury fashion campaigns
+Editorial magazine layouts
+Modern streetwear brands
+Minimalist e-commerce experiences
+
+The branding, assets, typography arrangement, and content were redesigned to maintain originality and avoid direct replication.
+
+## Learning Goals
+
+This project was built to practice and demonstrate:
+
+Advanced responsive layouts
+Creative frontend engineering
+Animation systems
+Modern React architecture
+UI recreation skills
+Production-level frontend development
+Performance & Accessibility
+Semantic structure
+Responsive typography
+Mobile-friendly interactions
+
+Author
+
+Built by @SossaDaDeveloper
